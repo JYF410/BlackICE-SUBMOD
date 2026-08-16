@@ -131,7 +131,6 @@ KOR_CHI_Korea_Reconquista = {
 		on_map_mode = decision_view_only
 		allowed = { tag = KOR }
 		visible = {
-			has_country_flag = KOR_neutrality_host_country_decision_completed
 			NOT = { 596 = { is_controlled_by = KOR } }
 			NOT = { 596 = { is_controlled_by = CHI } }
 		}
@@ -177,23 +176,26 @@ KOR_CHI_Korea_Reconquista = {
 		on_map_mode = decision_view_only
 		allowed = { tag = KOR }
 		visible = {
-			has_global_flag = KMT_FRA_transferred_indochina_to_CHI
-			has_country_flag = KOR_neutrality_host_country_decision_refuse_us #蒋介石拒绝了我们
+			has_country_flag = KOR_neutrality_host_country_decision_completed #大韩民国临时政府要员撤离行动
+			NOT = { 596 = { is_controlled_by = KOR } }
+			NOT = { 798 = { is_controlled_by = KOR } }
+			671 = { is_controlled_by = CHI }
 		}
 		available = {
 			KOR = {
 				has_government = neutrality
 				is_government_in_exile = yes #是流亡政府
-				has_capitulated = yes #停止抵抗
 			}
-			NOT = { 596 = { is_controlled_by = KOR } }
-			NOT = { 798 = { is_controlled_by = KOR } }
-			671 = { is_controlled_by = CHI }
+			CHI = {
+				exists = yes
+				has_capitulated = no
+				has_opinion = { target = KOR value > 69 }
+				has_full_control_of_state = 671 #东北京
+			}
 		}
 		fire_only_once = yes #决议仅能使用一次
 		cost = 90
 		days_remove = 60
-		modifier = { civilian_factory_use = 1 } #民用工厂运作
 		remove_effect = {
 			671 = { transfer_state_to = KOR }
 			set_capital = { state = 671 }
